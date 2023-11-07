@@ -1,0 +1,6 @@
+__pycache__
+.python-version
+*.pyc
+.venv/
+venv/
+.pytest-cache/
