@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Dict
 
 import uvicorn
 from fastapi import FastAPI
@@ -12,6 +13,7 @@ class Reading(BaseModel):
     model: str
     uid: str
     timestamp: datetime
+    readings: Dict[str, float]
 
 @app.post("/")
 def default(reading: Reading):

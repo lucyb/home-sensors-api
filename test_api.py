@@ -10,6 +10,16 @@ def test_post_default_accepts_payload():
         "model": "grow",
         "uid": "e6614c775b8c4035",
         "timestamp": "2022-09-04T10:40:24Z",
+        "readings": {
+            "temperature": 27.57,
+            "humidity": 49.33,
+            "pressure": 996.22,
+            "noise": 0.87,
+            "pm1": 9,
+            "pm2_5": 4,
+            "pm10": 2,
+            "voltage": 4.035,
+        }
     }
 
     response = client.post("/", json=test_data)
