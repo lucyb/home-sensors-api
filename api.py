@@ -15,8 +15,12 @@ class Reading(BaseModel):
     timestamp: datetime
     readings: Dict[str, float]
 
-@app.post("/")
-def default(reading: Reading):
+@app.get("/")
+def default():
+    return
+
+@app.post("/urban")
+def urban(reading: Reading):
     # Process data from the Enviro Urban
     # https://github.com/pimoroni/enviro/blob/main/documentation/boards/enviro-urban.md
     return

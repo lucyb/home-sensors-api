@@ -4,7 +4,11 @@ from fastapi.testclient import TestClient
 
 client = TestClient(app)
 
-def test_post_default_accepts_payload():
+def test_get_default_returns_success():
+    response = client.get("/")
+    assert response.status_code == 200
+
+def test_post_urban_accepts_payload():
     test_data = {
         "nickname": "weather-test",
         "model": "grow",
@@ -22,5 +26,5 @@ def test_post_default_accepts_payload():
         }
     }
 
-    response = client.post("/", json=test_data)
+    response = client.post("/urban", json=test_data)
     assert response.status_code == 200
