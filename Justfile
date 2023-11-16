@@ -50,5 +50,8 @@ devenv *args: prodenv
     $PIP install -r requirements.dev.txt
     touch $VIRTUAL_ENV/.dev
 
+run: prodenv
+    python api.py
+
 test *args: devenv
     pytest {{ args }}
