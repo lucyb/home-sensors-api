@@ -11,7 +11,7 @@ def test_get_default_returns_success():
 def test_post_urban_accepts_payload():
     test_data = {
         "nickname": "weather-test",
-        "model": "grow",
+        "model": "urban",
         "uid": "e6614c775b8c4035",
         "timestamp": "2022-09-04T10:40:24Z",
         "readings": {
