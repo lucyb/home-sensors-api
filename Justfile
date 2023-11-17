@@ -61,7 +61,7 @@ devenv *args: prodenv
     touch $VIRTUAL_ENV/.dev
 
 run: prodenv
-    python api.py
+    $BIN/python api.py
 
 test *args: devenv
-    pytest {{ args }}
+    $BIN/pytest {{ args }}
