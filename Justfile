@@ -22,13 +22,27 @@ virtualenv:
     # ensure we have pip-tools so we can run pip-compile
     test -e $BIN/pip-compile || $PIP install pip-tools
 
-prodenv *args: virtualenv
+# update requirements.prod.txt if requirements.prod.in has changed
+requirements-prod *args:
     #!/usr/bin/env bash
     set -euo pipefail
 
     # exit if src file is older than dst file (-nt = 'newer than', but we negate with || to avoid error exit code)
     test "${FORCE:-}" = "true" -o requirements.prod.in -nt requirements.prod.txt || exit 0
     $BIN/pip-compile --allow-unsafe --generate-hashes --output-file=requirements.prod.txt requirements.prod.in {{ args }}
+
+# update requirements.dev.txt if requirements.dev.in has changed
+requirements-dev *args: requirements-prod
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    # exit if src file is older than dst file (-nt = 'newer than', but we negate with || to avoid error exit code)
+    test "${FORCE:-}" = "true" -o requirements.dev.in -nt requirements.dev.txt || exit 0
+    $BIN/pip-compile --allow-unsafe --generate-hashes --output-file=requirements.dev.txt requirements.dev.in {{ args }}
+
+prodenv *args: requirements-prod
+    #!/usr/bin/env bash
+    set -euo pipefail
 
     # exit if .txt file has not changed since we installed them
     test requirements.prod.txt -nt $VIRTUAL_ENV/.prod || exit 0
@@ -39,10 +53,6 @@ prodenv *args: virtualenv
 devenv *args: prodenv
     #!/usr/bin/env bash
     set -euo pipefail
-
-    # exit if src file is older than dst file (-nt = 'newer than', but we negate with || to avoid error exit code)
-    test "${FORCE:-}" = "true" -o requirements.dev.in -nt requirements.dev.txt || exit 0
-    $BIN/pip-compile --allow-unsafe --generate-hashes --output-file=requirements.dev.txt requirements.dev.in {{ args }}
 
     # exit if .txt file has not changed since we installed them
     test requirements.dev.txt -nt $VIRTUAL_ENV/.dev || exit 0
