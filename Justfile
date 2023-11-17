@@ -23,7 +23,7 @@ virtualenv:
     test -e $BIN/pip-compile || $PIP install pip-tools
 
 # update requirements.prod.txt if requirements.prod.in has changed
-requirements-prod *args:
+requirements-prod *args: virtualenv
     #!/usr/bin/env bash
     set -euo pipefail
 
