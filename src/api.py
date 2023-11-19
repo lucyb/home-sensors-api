@@ -4,6 +4,7 @@ import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+import database
 
 app = FastAPI()
 
@@ -32,6 +33,7 @@ def default():
 def urban(urban: Urban):
     # Process data from the Enviro Urban
     # https://github.com/pimoroni/enviro/blob/main/documentation/boards/enviro-urban.md
+    database.write(urban)
     return
 
 
