@@ -33,8 +33,7 @@ def default():
 def urban(urban: Urban):
     # Process data from the Enviro Urban
     # https://github.com/pimoroni/enviro/blob/main/documentation/boards/enviro-urban.md
-    database.write(urban)
-    return
+    return database.write(urban)
 
 
 if __name__ == "__main__":

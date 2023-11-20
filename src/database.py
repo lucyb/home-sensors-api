@@ -1,2 +1,2 @@
 def write(urban):
-    pass
+    return True
