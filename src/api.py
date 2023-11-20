@@ -1,29 +1,10 @@
-from datetime import datetime
-
 import uvicorn
 from fastapi import FastAPI
-from pydantic import BaseModel
 
 from . import database
+from .models import Urban
 
 app = FastAPI()
-
-class Reading(BaseModel):
-    temperature: float
-    humidity: float
-    pressure: float
-    noise: float
-    pm1: float
-    pm2_5: float
-    pm10: float
-    voltage: float
-
-class Urban(BaseModel):
-    nickname: str
-    model: str
-    uid: str
-    timestamp: datetime
-    readings: Reading
 
 @app.get("/")
 def default():
