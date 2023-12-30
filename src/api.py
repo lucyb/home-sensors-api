@@ -6,9 +6,11 @@ from .models import Urban
 
 app = FastAPI()
 
+
 @app.get("/")
 def default():
     return
+
 
 @app.post("/urban")
 def urban(urban: Urban):

@@ -1,14 +1,20 @@
 from src.api import app
+from src import api
 from fastapi.testclient import TestClient
 
 
 client = TestClient(app)
 
+
 def test_get_default_returns_success():
     response = client.get("/")
     assert response.status_code == 200
 
+
 def test_post_urban_accepts_payload():
+    # Disable db write
+    api.database.write = lambda x: True
+
     test_data = {
         "nickname": "weather-test",
         "model": "urban",
@@ -23,7 +29,7 @@ def test_post_urban_accepts_payload():
             "pm2_5": 4,
             "pm10": 2,
             "voltage": 4.035,
-        }
+        },
     }
 
     response = client.post("/urban", json=test_data)
