@@ -61,8 +61,8 @@ def write(urban: Urban):
                 "time": urban.timestamp,
                 "sensor_id": sensor_id,
                 "location_id": location_id,
-            }
-            | urban.readings.model_dump(),
+                **urban.readings.model_dump()
+            },
         )
         conn.commit()
 
