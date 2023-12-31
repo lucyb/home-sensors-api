@@ -9,7 +9,8 @@ Type=simple
 ; it looks like ENV_VAR_NAME=... etc.
 EnvironmentFile=/etc/default/sensors_api
 ; the package is pip installed to a venv
-ExecStart=/usr/local/lib/venvs/sensors_api/bin/api
+WorkingDirectory=/usr/local/lib/venvs/sensors_api/
+ExecStart=/usr/local/lib/venvs/sensors_api/.venv/bin/python3 -m src.api
 Restart=on-failure
 RestartSec=20
 
