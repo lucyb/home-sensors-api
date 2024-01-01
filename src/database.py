@@ -45,9 +45,9 @@ def create_table():
 
 def write(urban: Urban):
     sql = """
-        INSERT INTO urban_data(time, sensor_id, location_id, temperature, pressure, noise, pm1, pm2_5, pm10, voltage)
+        INSERT INTO urban_data(time, sensor_id, location_id, temperature, pressure, noise, pm1, pm2_5, pm10)
         VALUES(
-            %(time)s, %(sensor_id)s, %(location_id)s, %(temperature)s, %(pressure)s, %(noise)s, %(pm1)s, %(pm2_5)s, %(pm10)s, %(voltage)s
+            %(time)s, %(sensor_id)s, %(location_id)s, %(temperature)s, %(pressure)s, %(noise)s, %(pm1)s, %(pm2_5)s, %(pm10)s
         );"""
 
     sensor_id = 8

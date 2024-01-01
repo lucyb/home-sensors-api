@@ -17,8 +17,6 @@ def test_post_urban_accepts_payload():
 
     test_data = {
         "nickname": "weather-test",
-        "model": "urban",
-        "uid": "e6614c775b8c4035",
         "timestamp": "2022-09-04T10:40:24Z",
         "readings": {
             "temperature": 27.57,
@@ -28,7 +26,6 @@ def test_post_urban_accepts_payload():
             "pm1": 9,
             "pm2_5": 4,
             "pm10": 2,
-            "voltage": 4.035,
         },
     }
 
