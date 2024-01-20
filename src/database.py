@@ -15,6 +15,7 @@ def create_table():
             sensor_id INTEGER,
             location_id INTEGER,
             temperature DOUBLE PRECISION,
+            humidity DOUBLE PRECISION,
             pressure DOUBLE PRECISION,
             noise DOUBLE PRECISION,
             pm1 DOUBLE PRECISION,
@@ -45,9 +46,9 @@ def create_table():
 
 def write(urban: Urban):
     sql = """
-        INSERT INTO urban_data(time, sensor_id, location_id, temperature, pressure, noise, pm1, pm2_5, pm10)
+        INSERT INTO urban_data(time, sensor_id, location_id, temperature, humidity, pressure, noise, pm1, pm2_5, pm10)
         VALUES(
-            %(time)s, %(sensor_id)s, %(location_id)s, %(temperature)s, %(pressure)s, %(noise)s, %(pm1)s, %(pm2_5)s, %(pm10)s
+            %(time)s, %(sensor_id)s, %(location_id)s, %(temperature)s, %(humidity)s, %(pressure)s, %(noise)s, %(pm1)s, %(pm2_5)s, %(pm10)s
         );"""
 
     sensor_id = 8
